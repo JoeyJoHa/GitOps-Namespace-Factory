@@ -1,27 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-addons
+  name: namespace-factory
   namespace: argocd
 spec:
   generators:
   - git:
-      repoURL: https://github.com/argoproj/argo-cd.git
+      repoURL: https://github.com/JoeyJoHa/GitOps-Namespace-Factory.git
       revision: HEAD
       files:
       - path: "tenants/*.yaml"
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: '{{metadata.namespace}}'
     spec:
       project: "my-project"
       source:
-        repoURL: https://github.com/argoproj/argo-cd.git
+        repoURL: https://github.com/JoeyJoHa/GitOps-Namespace-Factory.git
         targetRevision: HEAD
-        path: '{{path}}'
+        path: 'helm/nsfactory'
+        helm:
+          valueFiles:
+
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{path.basename}}'
+        namespace: '{{metadata.namespace}}'
       syncPolicy:
         automated:
           prune: true
