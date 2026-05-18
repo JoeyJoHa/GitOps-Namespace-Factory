@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: resourcequota-{{ .Values.metadata.namespace }}
+  namespace: {{ .Values.metadata.namespace }}
+  labels:
+    owner: {{ .Values.metadata.owner }}
+    environment: {{ .Values.metadata.environment }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  hard:
+    pods: {{ .Values.resources.quota.cpuRequests }}
+    requests.cpu: {{ .Values.resources.quota.cpuLimits }}
+    requests.memory: {{ .Values.resources.quota.memoryRequests }}
+    limits.cpu: {{ .Values.resources.quota.cpuLimits }}
+    limits.memory: {{ .Values.resources.quota.memoryLimits }}

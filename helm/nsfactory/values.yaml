@@ -1,0 +1,27 @@
+# Default values for nsfactory.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+metadata:
+  namespace: example
+  owner: example
+  environment: example
+
+resources:
+  quota:
+    cpuRequests: 1
+    cpuLimits: 2
+    memoryRequests: 1Gi
+    memoryLimits: 2Gi
+  limits:
+    defaultCpu: 500m
+    defaultMemory: 512Mi
+    defaultRequestCpu: 200m
+    defaultRequestMemory: 256Mi
+
+# RBAC bindings for the namespace
+# RBACBindings:
+#   - group: example-admins
+#     clusterRole: admin
+#   - group: example-viewers
+#     clusterRole: view

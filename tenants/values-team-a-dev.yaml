@@ -1,0 +1,20 @@
+metadata:
+  namespace: team-a-dev
+  owner: team-a
+  environment: dev
+resources:
+  quota:
+    cpuRequests: '4'
+    cpuLimits: '8'
+    memoryRequests: 8Gi
+    memoryLimits: 16Gi
+  limits:
+    defaultCpu: 500m
+    defaultMemory: 512Mi
+    defaultRequestCpu: 200m
+    defaultRequestMemory: 256Mi
+RBACBindings:
+    - group: team-a-admins
+      clusterRole: admin
+    - group: team-a-viewers
+      clusterRole: view

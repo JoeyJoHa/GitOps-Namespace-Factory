@@ -1,0 +1,20 @@
+metadata:
+  namespace: team-b-qa
+  owner: team-b
+  environment: qa
+resources:
+  quota:
+    cpuRequests: '6'
+    cpuLimits: '12'
+    memoryRequests: 8Gi
+    memoryLimits: 16Gi
+  limits:
+    defaultCpu: 500m
+    defaultMemory: 512Mi
+    defaultRequestCpu: 200m
+    defaultRequestMemory: 256Mi
+RBACBindings:
+    - group: team-b-admins
+      clusterRole: admin
+    - group: team-b-viewers
+      clusterRole: view

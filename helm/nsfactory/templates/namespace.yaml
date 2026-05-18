@@ -1,0 +1,9 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: {{ .Values.metadata.namespace }}
+  labels:
+    owner: {{ .Values.metadata.owner }}
+    environment: {{ .Values.metadata.environment }}
+   annotations:
+    argocd.argoproj.io/sync-wave: "-1"
