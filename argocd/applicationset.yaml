@@ -14,7 +14,7 @@ spec:
     metadata:
       name: '{{metadata.namespace}}'
     spec:
-      project: "my-project"
+      project: "default"
       source:
         repoURL: https://github.com/JoeyJoHa/GitOps-Namespace-Factory.git
         targetRevision: HEAD
