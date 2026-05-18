@@ -21,7 +21,7 @@ spec:
         path: 'helm/nsfactory'
         helm:
           valueFiles:
-
+            - '/{{path}}'
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{metadata.namespace}}'
