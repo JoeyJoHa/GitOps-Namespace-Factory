@@ -1,3 +1,4 @@
+#namespace: Rockets-qa
 owner: team-b
 environment: qa
 resources:

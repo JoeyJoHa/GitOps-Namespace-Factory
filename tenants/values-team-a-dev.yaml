@@ -1,4 +1,4 @@
-#namespace: Mutants-dev
+namespace: Mutants-dev
 owner: team-a
 environment: dev
 resources:

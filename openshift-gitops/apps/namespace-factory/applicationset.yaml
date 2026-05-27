@@ -14,7 +14,7 @@ spec:
       - path: "tenants/*.yaml"
   template:
     metadata:
-      name: '{{ default (printf "%s-%s" .owner .environment) .namespace }}'
+      name: '{{ default (printf "%s-%s" .owner .environment) (index . "namespace") }}'
     spec:
       project: "default"
       source:
@@ -26,7 +26,7 @@ spec:
             - '/{{path}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{ default (printf "%s-%s" .owner .environment) .namespace }}'
+        namespace: '{{ default (printf "%s-%s" .owner .environment) (index . "namespace") }}'
       syncPolicy:
         automated:
           prune: true
