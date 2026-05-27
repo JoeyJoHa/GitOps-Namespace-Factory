@@ -1,0 +1,17 @@
+namespace: RedHat-Team
+owner: RedHat
+environment: Lab
+resources:
+  quota:
+    cpuRequests: '6'
+    cpuLimits: '12'
+    memoryRequests: 8Gi
+    memoryLimits: 16Gi
+  limits:
+    defaultCpu: 500m
+    defaultMemory: 512Mi
+    defaultRequestCpu: 200m
+    defaultRequestMemory: 256Mi
+rbac:
+  adminGroup: RedHat-Team-admins
+  viewGroup: RedHat-Team-viewers

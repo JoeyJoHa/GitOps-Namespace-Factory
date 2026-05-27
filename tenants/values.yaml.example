@@ -1,0 +1,21 @@
+# Optional override (lowercase DNS label). Default: {owner}-{environment}
+# namespace: myteam-dev
+
+owner: OWNER_PLACEHOLDER
+environment: ENV_PLACEHOLDER
+
+resources:
+  quota:
+    cpuRequests: "4"
+    cpuLimits: "8"
+    memoryRequests: 8Gi
+    memoryLimits: 16Gi
+  limits:
+    defaultCpu: 500m
+    defaultMemory: 512Mi
+    defaultRequestCpu: 200m
+    defaultRequestMemory: 256Mi
+
+rbac:
+  adminGroup: OWNER_PLACEHOLDER-admins
+  viewGroup: OWNER_PLACEHOLDER-viewers

@@ -18,4 +18,3 @@ spec:
       defaultRequest: 
         cpu: {{ .Values.resources.limits.defaultRequestCpu }}
         memory: {{ .Values.resources.limits.defaultRequestMemory }}
-      
