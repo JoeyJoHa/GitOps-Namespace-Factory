@@ -11,7 +11,8 @@ spec:
     repoURL: https://github.com/JoeyJoHa/GitOps-Namespace-Factory.git
     targetRevision: HEAD
     path: argocd/apps
-    recursive: true
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
@@ -19,3 +20,4 @@ spec:
     automated:
       prune: true
       selfHeal: true
+      enabled: true

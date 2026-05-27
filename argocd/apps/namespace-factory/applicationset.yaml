@@ -4,6 +4,8 @@ metadata:
   name: namespace-factory
   namespace: argocd
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
   - git:
       repoURL: https://github.com/JoeyJoHa/GitOps-Namespace-Factory.git
@@ -12,7 +14,7 @@ spec:
       - path: "tenants/*.yaml"
   template:
     metadata:
-      name: '{{metadata.namespace}}'
+      name: '{{ default (printf "%s-%s" .owner .environment) .namespace }}'
     spec:
       project: "default"
       source:
@@ -24,7 +26,7 @@ spec:
             - '/{{path}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{metadata.namespace}}'
+        namespace: '{{ default (printf "%s-%s" .owner .environment) .namespace }}'
       syncPolicy:
         automated:
           prune: true
