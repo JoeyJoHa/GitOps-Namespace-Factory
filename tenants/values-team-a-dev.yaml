@@ -1,4 +1,4 @@
-namespace: Mutants-dev
+#namespace: Mutants-dev
 owner: team-a
 environment: dev
 resources:
@@ -14,4 +14,4 @@ resources:
     defaultRequestMemory: 256Mi
 rbac:
   adminGroup: team-a-admins
-  #viewGroup: team-a-viewers
+  viewGroup: team-a-viewers
