@@ -4,9 +4,9 @@ ArgoCD Namespace Factory for Lab.
 
 ## Prerequisites
 
-[x] OpenShift GitOps or Argo CD installed
-[x] Git repo reachable from the cluster
-[x] Repository registered in Argo (credentials if private)
+- [x] OpenShift GitOps or Argo CD installed
+- [x] Git repo reachable from the cluster
+- [x] Repository registered in Argo (credentials if private)
 
 ## Additional information
 
