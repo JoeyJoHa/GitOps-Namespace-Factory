@@ -2,11 +2,14 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-metadata:
-  namespace: example
-  owner: example
-  environment: example
+# Namespace name to use for the namespace. If not provided, the namespace will be named after the owner and environment.
+#namespace: namespace-name
+# Owner of the namespace.
+owner: example
+# Environment of the namespace.
+environment: example
 
+# Resources for the namespace.
 resources:
   quota:
     cpuRequests: 1
@@ -19,9 +22,7 @@ resources:
     defaultRequestCpu: 200m
     defaultRequestMemory: 256Mi
 
-# RBAC bindings for the namespace
-# RBACBindings:
-#   - group: example-admins
-#     clusterRole: admin
-#   - group: example-viewers
-#     clusterRole: view
+# RBAC bindings for the namespace.
+# rbac:
+# adminGroup: example-admins
+# viewGroup: example-viewers

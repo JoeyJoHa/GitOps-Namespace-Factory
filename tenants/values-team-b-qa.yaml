@@ -1,7 +1,5 @@
-metadata:
-  namespace: team-b-qa
-  owner: team-b
-  environment: qa
+owner: team-b
+environment: qa
 resources:
   quota:
     cpuRequests: '6'
@@ -13,8 +11,6 @@ resources:
     defaultMemory: 512Mi
     defaultRequestCpu: 200m
     defaultRequestMemory: 256Mi
-RBACBindings:
-    - group: team-b-admins
-      clusterRole: admin
-    - group: team-b-viewers
-      clusterRole: view
+rbac:
+adminGroup: team-b-admins
+viewGroup: team-b-viewers

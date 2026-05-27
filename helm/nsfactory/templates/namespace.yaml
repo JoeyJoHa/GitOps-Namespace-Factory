@@ -1,9 +1,9 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: {{ .Values.metadata.namespace }}
+  name: {{ include "nsfactory.Namespace" . }}
   labels:
-    owner: {{ .Values.metadata.owner }}
-    environment: {{ .Values.metadata.environment }}
-   annotations:
+    owner: {{ .Values.owner }}
+    environment: {{ .Values.environment }}
+  annotations:
     argocd.argoproj.io/sync-wave: "-1"

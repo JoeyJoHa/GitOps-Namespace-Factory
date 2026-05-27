@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: ResourceQuota
 metadata:
-  name: resourcequota-{{ .Values.metadata.namespace }}
-  namespace: {{ .Values.metadata.namespace }}
+  name: {{ include "nsfactory.ResourceQuota" . }}
+  namespace: {{ include "nsfactory.Namespace" . }}
   labels:
-    owner: {{ .Values.metadata.owner }}
-    environment: {{ .Values.metadata.environment }}
+    owner: {{ .Values.owner }}
+    environment: {{ .Values.environment }}
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:

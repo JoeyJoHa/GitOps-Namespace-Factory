@@ -1,62 +1,35 @@
 {{/*
-Expand the name of the chart.
+Create the name of the namespace
 */}}
-{{- define "nsfactory.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
-{{- end }}
+{{- define "nsfactory.Namespace" -}}
+{{- if .Values.namespace -}}
+{{- .Values.namespace | lower | trunc 63 | trimSuffix "-" -}}
+{{- else -}}
+{{- printf "%s-%s" .Values.owner .Values.environment | lower | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+{{- end -}}
 
 {{/*
-Create a default fully qualified app name.
-We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
-If release name contains chart name it will be used as a full name.
+Create the name of the resource quota
 */}}
-{{- define "nsfactory.fullname" -}}
-{{- if .Values.fullnameOverride }}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
-{{- else }}
-{{- $name := default .Chart.Name .Values.nameOverride }}
-{{- if contains $name .Release.Name }}
-{{- .Release.Name | trunc 63 | trimSuffix "-" }}
-{{- else }}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
-{{- end }}
-{{- end }}
-{{- end }}
+{{- define "nsfactory.ResourceQuota" -}}
+{{- printf "resourcequota-%s" (include "nsfactory.Namespace" .) -}}
+{{- end -}}
 
 {{/*
-Create chart name and version as used by the chart label.
+Create the name of the limit range
 */}}
-{{- define "nsfactory.chart" -}}
-{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
-{{- end }}
+{{- define "nsfactory.LimitRange" -}}
+{{- printf "limitrange-%s" (include "nsfactory.Namespace" .) -}}
+{{- end -}}
 
 {{/*
-Common labels
+Normalized RBAC map: maps standard ClusterRoles to the groups defined in values.rbac
 */}}
-{{- define "nsfactory.labels" -}}
-helm.sh/chart: {{ include "nsfactory.chart" . }}
-{{ include "nsfactory.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- end }}
-
-{{/*
-Selector labels
-*/}}
-{{- define "nsfactory.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "nsfactory.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "nsfactory.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "nsfactory.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
-{{- end }}
+{{- define "nsfactory.RBACMap" -}}
+{{- $rbac := .Values.rbac | default dict -}}
+{{- $map := dict -}}
+{{- if $rbac.adminGroup }}{{ $_ := set $map "admin" $rbac.adminGroup }}{{ end -}}
+{{- if $rbac.viewGroup }}{{ $_ := set $map "view" $rbac.viewGroup }}{{ end -}}
+{{- $map | toJson -}}
+{{- end -}}
