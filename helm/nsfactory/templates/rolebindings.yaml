@@ -1,13 +1,14 @@
 {{- $roles := include "nsfactory.RBACMap" . | fromJson -}}
 {{- range $roleName, $groupName := $roles }}
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: {{ $groupName }}-rolebinding
   namespace: {{ include "nsfactory.Namespace" $ }}
   labels:
-    owner: {{ $.Values.owner }}
-    environment: {{ $.Values.environment }}
+    owner: {{ $.Values.owner | include "nsfactory.K8SObjectName" }}
+    environment: {{ $.Values.environment | include "nsfactory.K8SObjectName" }}
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 roleRef:

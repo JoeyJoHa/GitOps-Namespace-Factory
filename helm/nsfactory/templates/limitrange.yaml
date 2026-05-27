@@ -1,11 +1,12 @@
+---
 apiVersion: v1
 kind: LimitRange
 metadata:
   name: {{ include "nsfactory.LimitRange" . }}
   namespace: {{ include "nsfactory.Namespace" . }}
   labels:
-    owner: {{ .Values.owner }}
-    environment: {{ .Values.environment }}
+    owner: {{ .Values.owner | include "nsfactory.K8SObjectName" }}
+    environment: {{ .Values.environment | include "nsfactory.K8SObjectName" }}
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:

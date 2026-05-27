@@ -1,13 +1,21 @@
 {{/*
+Standardize K8S object names (lower, trunc, trim)
+*/}}
+{{- define "nsfactory.K8SObjectName" -}}
+{{- . | lower | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{/*
 Create the name of the namespace
 */}}
 {{- define "nsfactory.Namespace" -}}
 {{- if .Values.namespace -}}
-{{- .Values.namespace | lower | trunc 63 | trimSuffix "-" -}}
+{{- include "nsfactory.K8SObjectName" .Values.namespace -}}
 {{- else -}}
-{{- printf "%s-%s" .Values.owner .Values.environment | lower | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Values.owner .Values.environment | include "nsfactory.K8SObjectName" -}}
 {{- end -}}
 {{- end -}}
+
 
 {{/*
 Create the name of the resource quota
