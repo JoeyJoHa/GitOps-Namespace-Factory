@@ -32,6 +32,13 @@ Create the name of the limit range
 {{- end -}}
 
 {{/*
+Create the name of the app project
+*/}}
+{{- define "nsfactory.AppProject" -}}
+{{- printf "%s-project" (include "nsfactory.Namespace" .) -}}
+{{- end -}}
+
+{{/*
 Normalized RBAC map: maps standard ClusterRoles to the groups defined in values.rbac
 */}}
 {{- define "nsfactory.RBACMap" -}}

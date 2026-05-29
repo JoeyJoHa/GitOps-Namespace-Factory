@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ include "nsfactory.AppProject" . }}
+  namespace: argocd
+  labels:
+    owner: {{ .Values.owner | include "nsfactory.K8SObjectName" }}
+    environment: {{ .Values.environment | include "nsfactory.K8SObjectName" }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  roles:
+  - name: tenant-admins
+    description: "ArgoCD admin role for the application project"
+    groups:
+    - {{ .Values.rbac.adminGroup }}
+    policies:
+    - p, proj:{{ include "nsfactory.AppProject" . }}:tenant-admins, *, {{ include "nsfactory.AppProject" . }}/*, *, allow
+  - name: tenant-viewers
+    description: "ArgoCD viewer role for the application project"
+    groups:
+    - {{ .Values.rbac.viewGroup }}
+    policies:
+    - p, proj:{{ include "nsfactory.AppProject" . }}:tenant-viewers, applications, get, {{ include "nsfactory.AppProject" . }}/*, allow
+    - p, proj:{{ include "nsfactory.AppProject" . }}:tenant-viewers, applicationsets, get, {{ include "nsfactory.AppProject" . }}/*, allow
+  destinations:
+  - namespace: {{ include "nsfactory.Namespace" . }}
+    server: https://kubernetes.default.svc
+  namespaceResourceWhitelist:
+  - group: apps
+    kind: Deployment
+  - group: apps
+    kind: StatefulSet
+  - group: batch
+    kind: Job
+  - group: batch
+    kind: CronJob
+  - group: ''
+    kind: Pod
+  - group: ''
+    kind: Service
+  - group: ''
+    kind: Secret
+  - group: ''
+    kind: ConfigMap
+  - group: networking.k8s.io
+    kind: Ingress
+  - group: ''
+    kind: ServiceAccount
+  sourceRepos:
+  - '*'

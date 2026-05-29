@@ -13,5 +13,5 @@ resources:
     defaultRequestCpu: 200m
     defaultRequestMemory: 256Mi
 rbac:
-  adminGroup: team-b-admins
+  #adminGroup: team-b-admins
   viewGroup: team-b-viewers

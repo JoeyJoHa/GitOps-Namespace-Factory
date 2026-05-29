@@ -29,7 +29,7 @@ spec:
         namespace: '{{ default (printf "%s-%s" .owner .environment) (index . "namespace")| lower | trunc 63 | trimSuffix "-" }}'
       syncPolicy:
         syncOptions:
-          - CreateNamespace=true
+          - CreateNamespace=false
         automated:
           prune: true
           selfHeal: true
