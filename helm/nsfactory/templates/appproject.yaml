@@ -18,7 +18,7 @@ spec:
     groups:
     - {{ $rbac.adminGroup | quote }}
     policies:
-    - p, proj:{{ include "nsfactory.AppProject" . }}:tenant-admins, *, {{ include "nsfactory.AppProject" . }}/*, *, allow
+    - p, proj:{{ include "nsfactory.AppProject" . }}:tenant-admins, *, *, {{ include "nsfactory.AppProject" . }}/*, allow
 {{- end }}
 {{- if $rbac.viewGroup }}
   - name: tenant-viewers
