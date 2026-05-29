@@ -16,7 +16,7 @@ spec:
     metadata:
       name: '{{ default (printf "%s-%s" .owner .environment) (index . "namespace")| lower | trunc 63 | trimSuffix "-" }}'
     spec:
-      project: "default"
+      project: "platform-apps"
       source:
         repoURL: https://github.com/JoeyJoHa/GitOps-Namespace-Factory.git
         targetRevision: HEAD
