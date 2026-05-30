@@ -4,13 +4,13 @@ A lab project that provisions tenant namespaces on Kubernetes.
 
 ## Demos
 
-![Helm:](https://asciinema.org/a/8AvePqhqBtyS3cDY)
+[Helm:](https://asciinema.org/a/8AvePqhqBtyS3cDY)
 ![Helm Validation](demos/helm.gif)
 
-![Minikube Bootstrap:](https://asciinema.org/a/u82n7vDqHKj3ZDTc)
+[Minikube Bootstrap:](https://asciinema.org/a/u82n7vDqHKj3ZDTc)
 ![Minikube deployment](demos/minikube.gif)
 
-![ArgoCD Objects:](https://asciinema.org/a/6HsV3nbQDCFWlDhA)
+[ArgoCD Objects:](https://asciinema.org/a/6HsV3nbQDCFWlDhA)
 ![Argocd deployment](demos/argocd.gif)
 
 ## Repository layout
