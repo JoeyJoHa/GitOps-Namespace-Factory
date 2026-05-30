@@ -4,14 +4,14 @@ A lab project that provisions tenant namespaces on Kubernetes.
 
 ## Demos
 
-Helm:
-[![asciicast](https://asciinema.org/a/8AvePqhqBtyS3cDY.svg)](https://asciinema.org/a/8AvePqhqBtyS3cDY)
+![Helm:](https://asciinema.org/a/8AvePqhqBtyS3cDY)
+![Helm Validation](demos/helm.gif)
 
-Minikube Bootstrap:
-[![asciicast](https://asciinema.org/a/u82n7vDqHKj3ZDTc.svg)](https://asciinema.org/a/u82n7vDqHKj3ZDTc)
+![Minikube Bootstrap:](https://asciinema.org/a/u82n7vDqHKj3ZDTc)
+![Minikube deployment](demos/minikube.gif)
 
-ArgoCD Objects:
-[![Argocd deployment](demos/argocd.gif)](https://asciinema.org/a/6HsV3nbQDCFWlDhA)
+![ArgoCD Objects:](https://asciinema.org/a/6HsV3nbQDCFWlDhA)
+![Argocd deployment](demos/argocd.gif)
 
 ## Repository layout
 
@@ -19,6 +19,7 @@ ArgoCD Objects:
 GitOps-Namespace-Factory/
 ├── Makefile                              # Local validation + Minikube demo bootstrap
 ├── README.md
+├── demos
 ├── argocd/
 │   ├── appproject.yaml                   # platform-apps AppProject
 │   ├── application.yaml                  # factory-apps — app-of-apps for argocd/apps/
