@@ -11,7 +11,7 @@ Minikube Bootstrap:
 [![asciicast](https://asciinema.org/a/u82n7vDqHKj3ZDTc.svg)](https://asciinema.org/a/u82n7vDqHKj3ZDTc)
 
 ArgoCD Objects:
-[![asciicast](https://asciinema.org/a/6HsV3nbQDCFWlDhA.svg)](https://asciinema.org/a/6HsV3nbQDCFWlDhA)
+[![Argocd deployment](demos/argocd.gif)](https://asciinema.org/a/6HsV3nbQDCFWlDhA)
 
 ## Repository layout
 
