@@ -86,7 +86,7 @@ access-argo: ## Access the ArgoCD UI
 	@echo "Argo credentials:"
 	@echo "Username: admin"
 	@echo "Password: $(shell $(KUBECTL) get secret argocd-initial-admin-secret -n $(ARGOCD_NAMESPACE) -o jsonpath="{.data.password}" | base64 -d)"
-	@$(KUBECTL) port-forward svc/argocd-server -n $(ARGOCD_NAMESPACE) 8080:80 & echo "ArgoCD UI is available at http://localhost:8080, to stop the port forward, CTRL+C"
+	@$(KUBECTL) port-forward svc/argocd-server -n $(ARGOCD_NAMESPACE) 8080:80 & echo "ArgoCD UI is available at http://localhost:8080, to stop the port forward, CTRL+C or run lsof -ti:8080 | xargs kill in another terminal"
 
 demo-start: cluster-start deploy-argo deploy-appproject deploy-application ## Start the demo cluster and deploy the demo application
 	@echo "Demo cluster started and ArgoCD deployed"
